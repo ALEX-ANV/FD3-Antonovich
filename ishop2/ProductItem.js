@@ -8,10 +8,12 @@ var ProductItem = React.createClass({
       price: React.PropTypes.number.isRequired,
       description: React.PropTypes.string.isRequired,
       image: React.PropTypes.string.isRequired,
-      total: React.PropTypes.number.isRequired,
-      cbRemoveItem: React.PropTypes.func.isRequired,
-      selectedProductId: React.PropTypes.string
-    })
+      total: React.PropTypes.number.isRequired
+    }),
+    cbRemoveItem: React.PropTypes.func.isRequired,
+    selectedId: React.PropTypes.string.isRequired,
+    cbSelectItem: React.PropTypes.func.isRequired,
+    deactive: React.PropTypes.bool
   },
 
   getInitialState: function() {
@@ -22,25 +24,28 @@ var ProductItem = React.createClass({
     };
   },
 
-  handlerChangeBackground() {
-    if (this.state.background.backgroundColor == '#fff') {
-      this.setState({ background: { backgroundColor: '#FFFF00' } });
-    } else {
-      this.setState({ background: { backgroundColor: '#fff' } });
-    }
+  handlerSelectClick: function() {
+    this.props.cbSelectItem(this.props.product.id);
   },
 
   handlerRemoveButtonClick: function() {
-    this.props.product.cbRemoveItem(this.props.product.id);
+    this.props.cbRemoveItem(this.props.product.id);
   },
 
+  backgroundActive: { backgroundColor: '#FFFF00' },
+
+  backgroundDeactive: { backgroundColor: '#fff' },
+
   render: function() {
-    const { image, name, description, price, total, id } = this.props.product;
+    const { id, image, name, description, price, total } = this.props.product;
+
+    const { deactive, selectedId } = this.props;
+
     return React.DOM.div(
       {
         className: 'Product_container',
-        style: this.state.background,
-        onClick: this.handlerChangeBackground
+        style: selectedId == id && !deactive ? this.backgroundActive : this.backgroundDeactive,
+        onClick: this.handlerSelectClick
       },
       React.DOM.div(
         { className: 'Product_image' },

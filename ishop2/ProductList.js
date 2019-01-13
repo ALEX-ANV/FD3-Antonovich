@@ -16,8 +16,14 @@ var ProductList = React.createClass({
 
   getInitialState: function() {
     return {
-      products: this.props.products
+      products: this.props.products,
+      selectedId: '',
+      deactive: false
     };
+  },
+
+  handlerChangeBackground(id) {
+      this.setState({ selectedId: id, deactive: this.state.selectedId == id ? !this.state.deactive : this.state.deactive });
   },
 
   handlerRemoveItem: function(id) {
@@ -27,10 +33,11 @@ var ProductList = React.createClass({
   render: function() {
     let products = this.state.products.map(item =>
       React.createElement(ProductItem, {
-        product: {
-          ...item,
-          cbRemoveItem: this.handlerRemoveItem
-        },
+        product: item,
+        cbRemoveItem: this.handlerRemoveItem,
+        cbSelectItem: this.handlerChangeBackground,
+        selectedId: this.state.selectedId,
+        deactive: this.state.deactive,
         key: item.id
       })
     );
