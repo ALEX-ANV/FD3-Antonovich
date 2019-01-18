@@ -1,0 +1,19 @@
+.Product_container {
+  display: flex;
+}
+.Product_image {
+  display: block;
+  width: 20%;
+}
+.Product_description {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+}
+.Product_price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+}
