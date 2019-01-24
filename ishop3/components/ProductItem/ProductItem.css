@@ -1,5 +1,6 @@
 .Product_container {
   display: flex;
+  border: 1px solid #000;
 }
 .Product_image {
   display: block;
@@ -13,7 +14,8 @@
 .Product_price {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 15%;
+  margin-bottom: 10px;
 }

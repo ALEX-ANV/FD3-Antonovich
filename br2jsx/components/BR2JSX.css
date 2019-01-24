@@ -1,0 +1,7 @@
+.text_container {
+  display: inline-block;
+  background-color: black;
+  color: #fff;
+  padding: 25px;
+  text-align: center;
+}

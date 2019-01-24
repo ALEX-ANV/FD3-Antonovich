@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import "./ProductItem.css"
+import './ProductItem.css';
 
 export default class ProductItem extends Component {
   static propTypes = {
@@ -16,15 +16,29 @@ export default class ProductItem extends Component {
     cbRemoveItem: PropTypes.func.isRequired,
     selectedId: PropTypes.string.isRequired,
     cbSelectItem: PropTypes.func.isRequired,
-    deactive: PropTypes.bool
+    cbEditSelectedItem: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired
   };
 
-  handlerSelectClick = () => {
-    this.props.cbSelectItem(this.props.product.id);
+  handlerSelectClick = (EO) => {
+    if (!this.props.disabled && !(EO.target instanceof HTMLInputElement))
+    {
+      this.props.cbSelectItem(this.props.product.id);
+    }
   };
 
   handlerRemoveButtonClick = () => {
-    this.props.cbRemoveItem(this.props.product.id);
+    if (!this.props.disabled)
+    {
+      this.props.cbRemoveItem(this.props.product.id);
+    }
+  };
+
+  handlerEditButtonClick = () => {
+    if (!this.props.disabled)
+    {
+      this.props.cbEditSelectedItem(this.props.product.id);
+    }
   };
 
   render() {
@@ -53,6 +67,11 @@ export default class ProductItem extends Component {
             type="button"
             onClick={this.handlerRemoveButtonClick}
             value="Удалить"
+          />
+          <input
+            type="button"
+            onClick={this.handlerEditButtonClick}
+            value="Редактировать"
           />
         </div>
       </div>

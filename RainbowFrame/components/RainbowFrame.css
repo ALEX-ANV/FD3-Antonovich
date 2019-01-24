@@ -1,0 +1,12 @@
+.RainbowFrame {
+  width: 500px;
+  height: 300px;
+}
+
+.RaibowFrame_text {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px;
+  font-weight: bold;
+  font-size: 30px;
+}

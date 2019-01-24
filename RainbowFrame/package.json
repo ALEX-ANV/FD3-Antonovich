@@ -1,7 +1,7 @@
 {
-  "name": "ishop",
+  "name": "rainbow-frame",
   "version": "1.0.0",
-  "description": "Интернет магазин",
+  "description": "Rainbow frames",
   "main": "App.js",
   "scripts": {
     "build": ".\\node_modules\\.bin\\webpack",

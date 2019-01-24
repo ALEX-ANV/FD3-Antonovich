@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import data from './data.json';
-import ProductList from './components/ProductList';
+import ProductList from './components/ProductList/ProductList';
 
 ReactDOM.render(
   <ProductList products={data} />,
