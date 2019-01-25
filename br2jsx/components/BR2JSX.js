@@ -8,11 +8,13 @@ export default class BR2JSX extends Component {
   };
 
   render() {
-    var innerText = this.props.text.split(/<br *\/?>/).map(t => (<Fragment>{t}<br /></Fragment>));
-    return (
-      <div className="text_container">
-       {innerText}
-      </div>
-    );
+    let words = this.props.text.split(/<br *\/?>/);
+    let innerText = words.map((t, i) => (
+      <Fragment key={t}>
+        {t}
+        {i == words.length - 1 ? null : <br />}
+      </Fragment>
+    ));
+    return <div className="text_container">{innerText}</div>;
   }
 }
