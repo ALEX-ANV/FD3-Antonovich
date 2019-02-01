@@ -1,0 +1,32 @@
+.mobile-client__container {
+  display: flex;
+  width: 80%;
+  margin: 0px auto;
+  border: 1px solid black;
+}
+
+.mobile-client__properties {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 10% 15%;
+}
+.mobile-client__buttons {
+  width: 20%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.mobile-company__filter-buttons {
+  display: flex;
+  width: 80%;
+  margin: 0px auto 10px;
+  justify-content: center;
+}
+.green {
+  background-color: green;
+}
+.red {
+  background-color: red;
+}
+.center-text {
+  text-align: center;
+}

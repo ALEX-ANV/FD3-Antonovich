@@ -1,0 +1,30 @@
+[
+  {
+    "id": "a34ac229-e720-5ab8-953c-38cc7364911b",
+    "firstName": "Иван",
+    "lastName": "Иванов",
+    "patronymic": "Иванович",
+    "balance": "-117"
+  },
+  {
+    "id": "4a7bcc96-6054-5f0a-a318-d56b9f8646f3",
+    "firstName": "Петр",
+    "lastName": "Петров",
+    "patronymic": "Петрович",
+    "balance": "191"
+  },
+  {
+    "id": "3394f386-9fa9-5699-bfdb-75a15885f1da",
+    "firstName": "Сидоров",
+    "lastName": "Сидор",
+    "patronymic": "Сидорович",
+    "balance": "-206"
+  },
+  {
+    "id": "a7c5f09b-79e4-5ca3-8036-02c6555b3b2d",
+    "firstName": "Григорьев",
+    "lastName": "Григорий",
+    "patronymic": "Григорьевич",
+    "balance": "206"
+  }
+]
