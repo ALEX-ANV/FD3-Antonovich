@@ -8,7 +8,8 @@ import MobileClient from '../MobileClient/MobileClient';
 export default class MobileCompany extends PureComponent {
   state = {
     companyName: 'МТС',
-    clients: this.props.clients
+    clients: this.props.clients,
+    original: this.props.clients
   };
 
   componentDidMount() {
@@ -53,15 +54,9 @@ export default class MobileCompany extends PureComponent {
   };
 
   handlerAllFilterClick = () => {
-    if (this.state.original) {
       this.setState({
         clients: this.state.original
       });
-    } else {
-      this.setState({
-        clients: this.props.clients
-      });
-    }
   };
 
   handlerActiveFilterClick = () => {
