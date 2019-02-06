@@ -63,7 +63,7 @@ export default class MobileClient extends PureComponent {
       viewMode,
       client: { id, firstName, lastName, patronymic, balance }
     } = this.state;
-    console.log(`Mobile cliend id: ${id}: rendered`);
+    // console.log(`Mobile cliend id: ${id}: rendered`);
     const balanceProperty =
       parseFloat(balance) > 0 ? (
         <div className="green center-text">active</div>

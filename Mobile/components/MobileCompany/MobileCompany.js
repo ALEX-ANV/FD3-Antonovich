@@ -1,15 +1,20 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { events, SaveClient, RemoveClient } from '../../utils/events';
+import { collection } from '../../utils/ClientCollection';
 
 import './MobileCompany.css';
 import MobileClient from '../MobileClient/MobileClient';
 
+const Companies = {
+  Velcom: 'Velcom',
+  MTC: 'MTC'
+};
 export default class MobileCompany extends PureComponent {
   state = {
-    companyName: 'МТС',
-    clients: this.props.clients,
-    original: this.props.clients
+    companyName: Companies.MTC,
+    clients: collection.getClients(),
+    original: collection.getClients()
   };
 
   componentDidMount() {
@@ -22,41 +27,27 @@ export default class MobileCompany extends PureComponent {
     events.off(RemoveClient, this.handlerRemoveClient);
   }
 
-  static propTypes = {
-    clients: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        firstName: PropTypes.string.isRequired,
-        lastName: PropTypes.string.isRequired,
-        patronymic: PropTypes.string.isRequired,
-        balance: PropTypes.string.isRequired
-      })
-    ).isRequired
-  };
-
   handlerClickButtonCompany = EO => {
     this.setState({ companyName: EO.target.value });
   };
 
   handlerSaveClient = client => {
-    client.edit = false;
-    let newClients = this.state.clients.map(t =>
-      t.id == client.id ? client : t
-    );
-    this.setState({ clients: newClients, original: newClients });
+    collection.saveClient(client);
+    this.setState({ clients: collection.getClients(), original: collection.getClients() });
   };
 
   handlerRemoveClient = id => {
+    collection.removeClient(id);
     this.setState({
-      clients: this.state.clients.filter(t => t.id != id),
-      original: this.state.clients.filter(t => t.id != id)
+      clients: collection.getClients(),
+      original: collection.getClients()
     });
   };
 
   handlerAllFilterClick = () => {
-      this.setState({
-        clients: this.state.original
-      });
+    this.setState({
+      clients: this.state.original
+    });
   };
 
   handlerActiveFilterClick = () => {
@@ -78,25 +69,22 @@ export default class MobileCompany extends PureComponent {
   };
 
   handlerAddClientClick = () => {
-    this.setState({
-      clients: [
-        ...this.state.clients,
-        {
-          id: this.guidGenerator(),
-          firstName: '',
-          lastName: '',
-          patronymic: '',
-          balance: '',
-          edit: true
-        }
-      ]
-    });
+    let client = {
+      id: this.guidGenerator(),
+      firstName: '',
+      lastName: '',
+      patronymic: '',
+      balance: '',
+      edit: true
+    };
+    collection.addClients(client);
+    this.setState({ clients: collection.getClients() });
   };
 
   render() {
     const { companyName, clients } = this.state;
 
-    console.log('Mobile company: rendered');
+    // console.log('Mobile company: rendered');
 
     return (
       <div className="mobile-company__content">
@@ -104,13 +92,13 @@ export default class MobileCompany extends PureComponent {
           <input
             type="button"
             name="mts"
-            value="МТС"
+            value={Companies.MTC}
             onClick={this.handlerClickButtonCompany}
           />
           <input
             type="button"
             name="velcom"
-            value="Velcom"
+            value={Companies.Velcom}
             onClick={this.handlerClickButtonCompany}
           />
         </div>
@@ -118,21 +106,25 @@ export default class MobileCompany extends PureComponent {
         <div className="mobile-company__filter-buttons">
           <input
             type="button"
+            name="AddClient"
             value="Добавить"
             onClick={this.handlerAddClientClick}
           />
           <input
             type="button"
+            name="AllClients"
             value="Все"
             onClick={this.handlerAllFilterClick}
           />
           <input
             type="button"
+            name="ActiveClients"
             value="Активные"
             onClick={this.handlerActiveFilterClick}
           />
           <input
             type="button"
+            name="BlockedClients"
             value="Заблокированные"
             onClick={this.handlerBlockedFilterClick}
           />
