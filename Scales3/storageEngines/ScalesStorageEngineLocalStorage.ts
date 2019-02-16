@@ -4,6 +4,10 @@ import { Product } from '../Product';
 const name = 'StotageEngineProducts';
 
 export class ScalesStorageEngineLocalStorage implements IStorageEngine {
+  constructor() {
+    localStorage.removeItem(name);
+  }
+
   addItem(item: Product): void {
     let items = JSON.parse(localStorage.getItem(name));
     if (items instanceof Array) {

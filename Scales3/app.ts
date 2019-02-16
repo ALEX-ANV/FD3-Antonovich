@@ -14,10 +14,10 @@ let tomato1: Product = new Product(20, 'Tomato');
 let tomato2: Product = new Product(1, 'Tomato');
 let tomato3: Product = new Product(10, 'Tomato');
 
-let engine1: IStorageEngine = new ScalesStorageEngineArray();
+let engine1: ScalesStorageEngineArray = new ScalesStorageEngineArray();
 let engine2: IStorageEngine = new ScalesStorageEngineLocalStorage();
 
-var scales: Scales = new Scales(engine1);
+var scales = new Scales<ScalesStorageEngineArray>(engine1);
 
 scales.add(apple);
 scales.add(apple1);
@@ -31,7 +31,7 @@ scales.add(tomato3);
 console.log(scales.getSumScale());
 console.log(scales.getNameList());
 
-var scales1: Scales = new Scales(engine2);
+var scales1 = new Scales<ScalesStorageEngineLocalStorage>(engine2);
 
 scales1.add(apple);
 scales1.add(apple1);

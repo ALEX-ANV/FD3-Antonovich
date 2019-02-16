@@ -1,8 +1,12 @@
 import { Product } from './Product';
 import { IStorageEngine } from './storageEngines/IStorageEngine';
 
-export default class Scales {
-  constructor(private engine: IStorageEngine) {}
+export default class Scales<ScaleEngine extends IStorageEngine> {
+  private engine: ScaleEngine;
+
+  constructor(_engine: ScaleEngine) {
+    this.engine = _engine;
+  }
 
   add(product: Product) {
     this.engine.addItem(product);
